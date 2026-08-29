@@ -1,6 +1,6 @@
-package com.luis.empresabackend.repository;
+package com.azureJava.EmpresaBackend.repository;
 
-import com.luis.empresabackend.entity.Cliente;
+import com.azureJava.EmpresaBackend.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

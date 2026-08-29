@@ -1,4 +1,4 @@
-package com.luis.empresabackend.entity;
+package com.azureJava.EmpresaBackend.entity;
 
 
 import jakarta.persistence.*;

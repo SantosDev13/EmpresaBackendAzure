@@ -1,9 +1,10 @@
-package com.luis.empresabackend.controller;
+package com.azureJava.EmpresaBackend.controller;
 
 
-import com.luis.empresabackend.entity.Cliente;
-import com.luis.empresabackend.service.ClienteService;
+import com.azureJava.EmpresaBackend.entity.Cliente;
+import com.azureJava.EmpresaBackend.service.ClienteService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,14 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<Cliente> listar(){
-        return clienteService.listar();
+    public ResponseEntity<Page<Cliente>> listar(
+
+            @RequestParam(value = "pagina", defaultValue = "0") int pagina,
+            @RequestParam(value = "tamano", defaultValue = "2") int tamano
+
+    ){
+        Page<Cliente> resultado = clienteService.listar(pagina,tamano);
+        return ResponseEntity.ok(resultado);
     }
 
     @GetMapping("/{id}")

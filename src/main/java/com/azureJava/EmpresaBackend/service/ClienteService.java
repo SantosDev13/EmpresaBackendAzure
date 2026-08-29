@@ -1,11 +1,16 @@
-package com.luis.empresabackend.service;
+package com.azureJava.EmpresaBackend.service;
 
-import com.luis.empresabackend.entity.Cliente;
-import com.luis.empresabackend.repository.ClienteRepository;
+import com.azureJava.EmpresaBackend.entity.Cliente;
+import com.azureJava.EmpresaBackend.repository.ClienteRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+
 
 @Service
 public class ClienteService {
@@ -16,8 +21,14 @@ public class ClienteService {
         this.clienteRepository= clienteRepository;
     }
 
-    public List<Cliente> listar(){
-        return clienteRepository.findAll();
+    public Page<Cliente> listar(int pagina, int tamano){
+        if (pagina < 0)
+            pagina =0;
+        if (tamano <=0)
+            tamano=10;
+
+        Pageable pg = PageRequest.of(pagina,tamano);
+        return clienteRepository.findAll(pg);
     }
 
     public Optional<Cliente> obtenerPorId(Long id){
